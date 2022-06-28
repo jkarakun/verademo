@@ -1,30 +1,43 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
-- main
+- master
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'package'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: |
+     target/*.war
+     
+    TargetFolder: '$(build.artifactstagingdirectory)'
+  condition: succeededOrFailed()
 
 - task: Veracode@3
   inputs:
-    ConnectionDetailsSelection: 'Credentials'
-    apiId: 'b901acc0a0014bc732bb1c0c67dd6516'
-    apiKey: '8f9e28f54bde722942f7fb2f955c2c0777aeafdce3fd5459de7cb048e34eb8d5d0b8d14bdd76bbe6aca8bce718d88a24c98f7b3e395bf72898f269884587ad81'
+    ConnectionDetailsSelection: 'Endpoint'
+    AnalysisService: 'veracode'
     veracodeAppProfile: '$(system.teamProject)'
     version: '$(build.buildNumber)'
     filepath: '$(build.artifactstagingdirectory)'
+    sandboxName: 'ADO via YAML'
+    createSandBox: true
     maximumWaitTime: '360'
-
