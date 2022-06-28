@@ -20,8 +20,9 @@ steps:
 
 - task: Veracode@3
   inputs:
-    ConnectionDetailsSelection: 'Endpoint'
-    AnalysisService: 'veracode'
+    ConnectionDetailsSelection: 'Credentials'
+    apiId: 'b901acc0a0014bc732bb1c0c67dd6516'
+    apiKey: '8f9e28f54bde722942f7fb2f955c2c0777aeafdce3fd5459de7cb048e34eb8d5d0b8d14bdd76bbe6aca8bce718d88a24c98f7b3e395bf72898f269884587ad81'
     veracodeAppProfile: '$(system.teamProject)'
     version: '$(build.buildNumber)'
     filepath: '$(build.artifactstagingdirectory)'
