@@ -38,8 +38,6 @@ steps:
     veracodeAppProfile: 'Verademo'
     version: '$(build.buildNumber)'
     filepath: '$(build.artifactstagingdirectory)'
-    #sandboxName: 'ADO via YAML'
-    #createSandBox: true
     maximumWaitTime: '360'
     apiId: 
 
@@ -54,3 +52,4 @@ steps:
       script: |
             export SRCCLR_API_TOKEN="${{parameters.veracode_sca_token}}"
             curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor
+
