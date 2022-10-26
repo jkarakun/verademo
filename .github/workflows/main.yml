@@ -27,9 +27,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-  
-      - name: Build with Maven
-        run: mvn -f app/pom.xml clean package 
 
       - name: Get the Java API wrapper
         uses: wei/curl@master
