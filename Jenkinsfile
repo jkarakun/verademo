@@ -2,7 +2,7 @@
  * Normal Jenkinsfile that will build and do Policy and SCA scans
  */
 
-pipeline {
+pipeline { 
     agent any
 
     environment {
