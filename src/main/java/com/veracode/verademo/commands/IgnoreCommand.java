@@ -31,7 +31,7 @@ public class IgnoreCommand implements BlabberCommand {
 		try {
 			action = connect.prepareStatement(sqlQuery);
 			
-			action.setString(1, blabberUsername);
+			action.setString(1, blabberUsername); 
 			action.setString(2, username);
 			action.execute();
 						
