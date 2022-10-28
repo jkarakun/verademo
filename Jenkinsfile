@@ -102,7 +102,7 @@ pipeline {
         }
 
         // only works on *nix, as we're building a Linux image
-        //  uses the natively installed docker
+        //  uses the natively installed docker 
         stage ('Deploy') {
             when { expression { return (isUnix() == true) } }
             steps {
