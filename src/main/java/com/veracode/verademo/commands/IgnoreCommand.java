@@ -20,7 +20,7 @@ public class IgnoreCommand implements BlabberCommand {
 		super();
 		this.connect = connect;
 		this.username = username;
-		System.out.println("");  
+		System.out.println("TEST");  
 	}  
 
 	@Override
