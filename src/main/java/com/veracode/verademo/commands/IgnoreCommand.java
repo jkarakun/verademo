@@ -14,7 +14,7 @@ public class IgnoreCommand implements BlabberCommand {
 	
 	private Connection connect;
 	
-	private String username;
+	private String username; 
 
 	public IgnoreCommand(Connection connect, String username) {
 		super();
