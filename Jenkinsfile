@@ -12,7 +12,7 @@ pipeline {
     // this is optional on Linux, if jenkins does not have access to your locally installed docker
     //tools {
         // these match up with 'Manage Jenkins -> Global Tool Config'
-        //'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'docker-latest' 
+        //'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'docker-latest'  
     //}
 
     options {
