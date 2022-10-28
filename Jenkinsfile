@@ -87,7 +87,7 @@ pipeline {
                                 // debug, no upload
                                 //sh "curl -sSL https://download.sourceclear.com/ci.sh | DEBUG=1 sh -s -- scan --no-upload"
                             }
-                            else {
+                            else { 
                                 powershell '''
                                             Set-ExecutionPolicy AllSigned -Scope Process -Force
                                             $ProgressPreference = "silentlyContinue"
