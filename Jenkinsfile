@@ -27,7 +27,7 @@ pipeline {
                     if (isUnix() == true) {
                         sh 'pwd'
                         sh 'ls -la'
-                        sh 'echo $PATH'
+                        sh 'echo $PATH' 
                     }
                     else {
                         bat 'dir'
