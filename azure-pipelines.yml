@@ -44,15 +44,3 @@ steps:
     createSandBox: true
     createProfile: true
     maximumWaitTime: '360'
-
-
-- task: Bash@3
-parameters:
-- name: veracode_sca_token
-  type: string
-  displayName: 'Veracode SCA scan'
-  inputs:
-    targetType: 'inline'
-    script: |
-          export SRCCLR_API_TOKEN="${{parameters.veracode_sca_token}}"
-          curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor
