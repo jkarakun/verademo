@@ -32,18 +32,22 @@ steps:
   condition: succeededOrFailed()
 
 - task: Veracode@3
+  displayName: 'Veracode Upload and Scan'
   inputs:
     ConnectionDetailsSelection: 'Endpoint'
     AnalysisService: 'veracode'
     veracodeAppProfile: 'Verademo'
     version: '$(build.buildNumber)'
     filepath: '$(build.artifactstagingdirectory)'
+    sandboxName: 'ADO'
+    createSandBox: true
+    createProfile: true
     maximumWaitTime: '360'
-    apiId: 
 
 parameters:
   - name: veracode_sca_token
     type: string
+steps:
   - task: Bash@3
     displayName: 'Veracode SCA scan'
     inputs:
@@ -51,15 +55,3 @@ parameters:
       script: |
             export SRCCLR_API_TOKEN="${{parameters.veracode_sca_token}}"
             curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor
-  - task: Veracode@3
-    displayName: 'Veracode Upload and Scan'
-    inputs:
-      ConnectionDetailsSelection: 'Endpoint'
-      AnalysisService: 'veracode'
-      veracodeAppProfile: 'Verademo'
-      version: '$(build.buildNumber)'
-      filepath: '$(build.artifactstagingdirectory)'
-      sandboxName: 'ADO'
-      createSandBox: true
-      createProfile: true
-      maximumWaitTime: '360'
