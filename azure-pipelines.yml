@@ -44,7 +44,6 @@ steps:
 parameters:
   - name: veracode_sca_token
     type: string
-steps:
   - task: Bash@3
     displayName: 'Veracode SCA scan'
     inputs:
@@ -52,7 +51,6 @@ steps:
       script: |
             export SRCCLR_API_TOKEN="${{parameters.veracode_sca_token}}"
             curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor
-
   - task: Veracode@3
     displayName: 'Veracode Upload and Scan'
     inputs:
