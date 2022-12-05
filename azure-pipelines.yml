@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+parameters:
+  - name: veracode_sca_token
+    type: string
 steps:
 - task: Maven@3
   inputs:
