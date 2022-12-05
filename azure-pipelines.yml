@@ -9,9 +9,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-parameters:
-  - name: veracode_sca_token
-    type: string
+
 steps:
 - task: Maven@3
   inputs:
@@ -47,7 +45,11 @@ steps:
     createProfile: true
     maximumWaitTime: '360'
 
+
 - task: Bash@3
+parameters:
+- name: veracode_sca_token
+  type: string
   displayName: 'Veracode SCA scan'
   inputs:
     targetType: 'inline'
