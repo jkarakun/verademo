@@ -40,7 +40,5 @@ steps:
     veracodeAppProfile: 'Verademo'
     version: '$(build.buildNumber)'
     filepath: '$(build.artifactstagingdirectory)'
-    sandboxName: 'ADO'
-    createSandBox: true
     createProfile: true
     maximumWaitTime: '360'
